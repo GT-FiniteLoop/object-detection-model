@@ -19,6 +19,10 @@ class TestFirearmType(unittest.TestCase):
         score = detect("")
         self.assertTrue(score > threshold)
 
+    def test_firearm_hand_metal(self):
+        score = detect("hand_metal.png")
+        self.assertTrue(score > threshold)
+
     def test_firearm_hand(self):
         score = detect("")
         self.assertTrue(score > threshold)
