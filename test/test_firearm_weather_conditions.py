@@ -31,6 +31,10 @@ class TestWeatherConditions(unittest.TestCase):
         score = detect("")
         self.assertTrue(score > threshold)
 
+    def test_firearm_outdoor_rain(self):
+        score = detect("")
+        self.assertTrue(score > threshold)
+
 
 if __name__ == '__main__':
     # parser = argparse.ArgumentParser()

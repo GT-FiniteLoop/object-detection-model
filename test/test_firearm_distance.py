@@ -11,15 +11,15 @@ class TestDistance(unittest.TestCase):
         score = detect("")
         self.assertTrue(score > threshold)
 
-    def test_firearm_distance_5_ft(self):
-        score = detect("")
-        self.assertTrue(score > threshold)
-
     def test_firearm_distance_10_ft(self):
         score = detect("")
         self.assertTrue(score > threshold)
 
     def test_firearm_distance_20_ft(self):
+        score = detect("")
+        self.assertTrue(score > threshold)
+
+    def test_firearm_distance_30_ft(self):
         score = detect("")
         self.assertTrue(score > threshold)
 

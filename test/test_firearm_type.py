@@ -11,15 +11,19 @@ class TestFirearmType(unittest.TestCase):
         score = detect("")
         self.assertTrue(score > threshold)
 
+    def test_firearm_umbrella(self):
+        score = detect("")
+        self.assertTrue(score > threshold)
+
+    def test_firearm_phone(self):
+        score = detect("")
+        self.assertTrue(score > threshold)
+
     def test_firearm_hand(self):
         score = detect("")
         self.assertTrue(score > threshold)
 
-    def test_firearm_rifle(self):
-        score = detect("")
-        self.assertTrue(score > threshold)
-
-    def test_firearm_machine(self):
+    def test_firearm_long(self):
         score = detect("")
         self.assertTrue(score > threshold)
 
