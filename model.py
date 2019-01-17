@@ -1,5 +1,6 @@
 
 def detect(image_frame):
-    # TODO(): Implement object detection logic
+    # TODO(): Encode image based on ML framework
+    #and implement object detection logic
     confidence = 100.0
     return confidence
