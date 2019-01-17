@@ -6,32 +6,20 @@ sys.path.append('..')
 from model import detect
 from util import threshold
 
-class TestFirearmType(unittest.TestCase):
-    def test_firearm_unpresent(self):
+class TestDistance(unittest.TestCase):
+    def test_firearm_distance_close(self):
         score = detect("")
         self.assertTrue(score > threshold)
 
-    def test_firearm_hand(self):
+    def test_firearm_distance_5_ft(self):
         score = detect("")
         self.assertTrue(score > threshold)
 
-    def test_firearm_rifle(self):
+    def test_firearm_distance_10_ft(self):
         score = detect("")
         self.assertTrue(score > threshold)
 
-    def test_firearm_machine(self):
-        score = detect("")
-        self.assertTrue(score > threshold)
-
-    def test_firearm_toy(self):
-        score = detect("")
-        self.assertTrue(score > threshold)
-
-    def test_firearm_water(self):
-        score = detect("")
-        self.assertTrue(score > threshold)
-
-    def test_firearm_flare(self):
+    def test_firearm_distance_20_ft(self):
         score = detect("")
         self.assertTrue(score > threshold)
 
