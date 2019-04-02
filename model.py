@@ -8,39 +8,31 @@ import sys
 import tarfile
 import tensorflow as tf
 import zipfile
+import argparse
 
 from collections import defaultdict
 from io import StringIO
 from PIL import Image
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-camera = cv2.VideoCapture(0)
+
 
 sys.path.append("..")
 
 from utils import label_map_util
 from utils import visualization_utils as vis_util
 
-# TODO(): Run once then refer to the local version of the inference graph and check in
-MODEL_NAME = 'ssd_mobilenet_v1_coco_11_06_2017'
-MODEL_FILE = MODEL_NAME + '.tar.gz'
-DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
+
+MODEL_NAME = 'firearm_graph_v2.pb'
 
 # Path to frozen detection graph. This is the actual model that is used for the object detection.
 PATH_TO_CKPT = MODEL_NAME + '/frozen_inference_graph.pb'
 
 # List of the strings that is used to add correct label for each box.
-PATH_TO_LABELS = os.path.join('data', 'mscoco_label_map.pbtxt')
+PATH_TO_LABELS = os.path.join('data', 'label_map.pbtxt')
 
-NUM_CLASSES = 90
+NUM_CLASSES = 1
 
-opener = urllib.request.URLopener()
-opener.retrieve(DOWNLOAD_BASE + MODEL_FILE, MODEL_FILE)
-tar_file = tarfile.open(MODEL_FILE)
-for file in tar_file.getmembers():
-  file_name = os.path.basename(file.name)
-  if 'frozen_inference_graph.pb' in file_name:
-    tar_file.extract(file, os.getcwd())
 
 detection_graph = tf.Graph()
 with detection_graph.as_default():
@@ -119,17 +111,48 @@ def google_image_search_feed():
     # https://github.com/hardikvasa/google-images-download#arguments
     return None
 
-def local_video_feed(filename):
-    return None
+def local_video_feed():
+    while(camera.isOpened()):
+        # Capture frame from camera
+        ret, frame = camera.read()
+        # frame = cv2.resize(frame, (299, 299), interpolation=cv2.INTER_CUBIC)
+        # Adhere to TF graph input structure
+        # numpy_final = transform_frame(frame)
+        numpy_final = frame
+        if (detect(numpy_final) > .85):
+            # TODO(): Alert security personnel
+            # continue
+            print("Gun detected!")
+        # Break from feed
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    camera.release()
+    cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    # TODO(): Add argument options for different types of feed. (More below)
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument('--feed', default='live')
+    
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--mode', default='live')
+    parser.add_argument('--video')
+    args = parser.parse_args()
+
     with detection_graph.as_default():
       with tf.Session(graph=detection_graph) as sess:
         # Execute surveillance:
-        live_feed()
+        if args.mode == "live":
+            camera = cv2.VideoCapture(0)
+            if camera is None or not camera.isOpened():
+                print("No available camera.")
+                exit()
+            live_feed()
         # youtube_video_feed()
         # google_image_search_feed()
-        # local_video_feed()
+        if args.mode == "local" and args.video:
+            camera = cv2.VideoCapture(args.video)
+            if camera is None or not camera.isOpened():
+                print("Unabel to open provided file. Check filename")
+                exit()
+            local_video_feed()
+        elif args.mode == "local":
+            print("Local usage: python model.py --mode local --video <video file>")
