@@ -23,7 +23,7 @@ from utils import label_map_util
 from utils import visualization_utils as vis_util
 
 
-MODEL_NAME = 'firearm_graph_v2.pb'
+MODEL_NAME = 'firearm_graph_v6.pb'
 
 # Path to frozen detection graph. This is the actual model that is used for the object detection.
 PATH_TO_CKPT = MODEL_NAME + '/frozen_inference_graph.pb'
