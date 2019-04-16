@@ -14,6 +14,7 @@ KNOWN BUGS
 ```
 Local video mode will not exit gracefully at the end of the video. 
 For an unkown reason opencv believes there is one additional frame.
+Command line does not print if a gun is detected. Could not find a way to access confidence scores.
 ```
 
 
