@@ -17,8 +17,9 @@ $chmod +x ./tf_install.sh
 
 $sudo ./tf_install.sh
 
-The install script will install python 3.5, pip for python 3, tensorflow 1.13, and tensorflow dependencies.
+The install script will install python 3.5, pip for python 3, tensorflow 1.13, tensorflow dependencies, and protoc.
 It will clone the tensorflow models repository as well, which is used by our application.
+Protoc is used by tensorlow to compile some C++ into python. 
 ```
 
 ### Run Instructions
