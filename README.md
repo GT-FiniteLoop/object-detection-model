@@ -1,23 +1,29 @@
-# Object Detection Model: In Progress
+# Object Detection Model:
 
 ### System Requirements
-This software requires Python>=2.7 and the following pip packages: tensorflow opencv matplotlib.
-
-OpenCV
 ```
-brew install opencv3 # MacOS
-
-sudo apt-get install python-opencv # Linux
-
-pip install opencv-contrib-python # Windows
+Install instructions are for Linux and tested specifically on Ubuntu 16.04
 ```
 
-Tensorflow and Matplotlib
+### Install Instructions
 ```
-pip install tensorflow matplotlib
+Run the following commands to install git, clone our repository, and run our installation script
+
+$sudo apt-get install git
+$git clone https://github.com/GT-FiniteLoop/object-dectection-model.git
+
+$cd object-detction-model
+$chmod +x ./tf_install.sh
+
+$sudo ./tf_install.sh
 ```
 
 ### Run Instructions
 ```
-python model.py
+The two implemented modes are live and local.
+Live will take the first available camera and local will take a provided video file.
+
+python3 model.py  --mode live
+or
+python3 model.py --mode local --video <video file>
 ```
