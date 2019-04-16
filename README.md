@@ -2,7 +2,8 @@
 
 ### System Requirements
 ```
-Install instructions are for Linux and tested specifically on Ubuntu 16.04
+Install instructions are for Linux and tested specifically on Ubuntu 16.04.
+Install script is made for a computer using a 64 bit architecture in the stated enviornment.
 ```
 
 ### Install Instructions
