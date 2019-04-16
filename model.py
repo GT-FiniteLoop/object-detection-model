@@ -74,7 +74,7 @@ def detect(image_np):
     cv2.imshow('object detection', cv2.resize(image_np, (800,600)))
 
     # TODO(): Map 'scores' above to confidence
-    confidence = 100.0
+    confidence = 0.0
     return confidence
 
 def transform_frame(frame):
