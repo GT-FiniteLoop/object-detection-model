@@ -145,7 +145,11 @@ if __name__ == "__main__":
             if camera is None or not camera.isOpened():
                 print("No available camera.")
                 exit()
-            live_feed()
+            try:
+              live_feed()
+            except KeyboardInterrupt:
+              print("Execution ended by user.")
+              exit()
         # youtube_video_feed()
         # google_image_search_feed()
         if args.mode == "local" and args.video:
@@ -153,6 +157,11 @@ if __name__ == "__main__":
             if camera is None or not camera.isOpened():
                 print("Unabel to open provided file. Check filename")
                 exit()
-            local_video_feed()
+            try:
+                local_video_feed()
+
+            except KeyboardInterrupt:
+              print("Execution ended by user.")
+              exit()
         elif args.mode == "local":
             print("Local usage: python model.py --mode local --video <video file>")
