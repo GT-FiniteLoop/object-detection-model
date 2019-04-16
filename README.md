@@ -1,5 +1,22 @@
 # Object Detection Model:
 
+### Release Notes version Firearm Detection 1.0
+NEW FEATURES
+```
+Two different running modes
+More accurate and efficient model. Version 6 of the model
+```
+BUG FIXES
+```
+Handle keyboard interrupt to exit gracefully in the middle of a video or during live feed.
+```
+KNOWN BUGS
+```
+Local video mode will not exit gracefully at the end of the video. 
+For an unkown reason opencv believes there is one additional frame.
+```
+
+
 ### System Requirements
 ```
 Install instructions are for Linux and tested specifically on Ubuntu 16.04.
