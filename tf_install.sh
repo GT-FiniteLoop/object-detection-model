@@ -9,7 +9,7 @@ cd ~
 sudo apt-get update
 sudo apt-get install -y python3-dev python3-pip
 sudo apt-get install git
-pip3 install --ignore-installed --upgrade tensorflow=1.13.1
+pip3 install --ignore-installed --upgrade tensorflow==1.13.1
 pip3 install pillow==5.4.1 lxml==4.3.1 jupyter==1.0.0 matplotlib==3.0.2 opencv-python
 
 cd ~
